@@ -7,10 +7,10 @@ export default function TodoList() {
     {id:'123',text:'React공부하기',status:'active'},
     {id:'124',text:'java공부하기',status:'active'},
   ]);
-  const handleAdd=(todo)=>{
+  const handleAdd=(todo)=>setTodos([...todos,todo])
     // 새로운 todo 를 받아서 todos에 업데이트해야한다.
-    console.log(todo);
-  }
+   
+  
   return <section>
       <ul>
         {
