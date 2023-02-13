@@ -8,7 +8,7 @@ export default function Header({filters,filter,onFilterChange}) {
       {filters.map((value,index)=>
       <li key={index}>
        <button
-        className={styles.filter} 
+        className={`${styles.filter} ${filter === value && styles.selected}`} 
        onClick={()=>onFilterChange(value)}>{value}</button>
       </li>)}
     </ul>
