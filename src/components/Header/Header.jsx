@@ -8,7 +8,7 @@ const {darkMode,toggleDarkMode}=useDarkMode();
 
   return (
   <header className={styles.header}>
-    <button onClick={toggleDarkMode}>
+    <button onClick={toggleDarkMode} className={styles.toggle}>
       {/* 다크모드 아닐때 보여주는 icon*/}
       {!darkMode &&<HiMoon/>}
       {/* 다크모드 일때 보여주는 icon*/}
