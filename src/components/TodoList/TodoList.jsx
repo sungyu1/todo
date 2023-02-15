@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 // TodoList import 불러오기
 import AddTodo from '../AddTodo/AddTodo';
 import Todo from '../Todo/Todo';
+import styles from './TodoList.module.css';
 
 export default function TodoList({filter}) {
   const [todos,setTodos]=useState([
@@ -19,8 +20,9 @@ export default function TodoList({filter}) {
    const filtered = getFilteredItems(todos,filter);
   
     // 새로운 todo 를 받아서 todos에 업데이트해야한다.
-  return <section>
-      <ul>
+  return (
+  <section className={styles.container}>
+      <ul className={styles.list}>
         {
         filtered.map((item)=>(
         <Todo 
@@ -34,7 +36,7 @@ export default function TodoList({filter}) {
 
       {/* TodoList 불러오기 */}
       <AddTodo onAdd={handleAdd}></AddTodo>
-    </section>;
+    </section>);
 }
 function getFilteredItems(todos,filter){
   if(filter === 'all'){
