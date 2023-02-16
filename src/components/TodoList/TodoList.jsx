@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 // TodoList import 불러오기
 import AddTodo from '../AddTodo/AddTodo';
 import Todo from '../Todo/Todo';
 import styles from './TodoList.module.css';
-
+// Add 추가 저장 
 export default function TodoList({filter}) {
-  const [todos,setTodos]=useState([
-    {id:'123',text:'React공부하기',status:'active'},
-    {id:'124',text:'java공부하기',status:'active'},
-  ]);
+  const [todos,setTodos]=useState(()=>
+    readTodos());
+
   //  todos 업데이트 추가 삭제
   const handleAdd=(todo)=>setTodos([...todos,todo]);
   const handleUpdate=(updated)=>
@@ -16,6 +15,10 @@ export default function TodoList({filter}) {
   
   const handleDelete=(deleted)=>
   setTodos(todos.filter((todo)=>todo.id !== deleted.id));
+
+  useEffect(()=>{
+    localStorage.setItem('todos',JSON.stringify(todos));
+  },[todos]);
 
    const filtered = getFilteredItems(todos,filter);
   
@@ -38,6 +41,13 @@ export default function TodoList({filter}) {
       <AddTodo onAdd={handleAdd}></AddTodo>
     </section>);
 }
+
+function readTodos(){
+  console.log('readTodos');
+  const todos=localStorage.getItem('todos');
+  return todos ? JSON.parse(todos) : [];
+}
+
 function getFilteredItems(todos,filter){
   if(filter === 'all'){
     return todos;
