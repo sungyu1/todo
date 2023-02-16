@@ -4,7 +4,7 @@ import styles from './Todo.module.css'
 
 export default function Todo({todo,onUpdate,onDelete}) {
   //  text,status 를 todo obj 받아오기 
-  const{text,status}=todo;
+  const{id,text,status}=todo;
   const handleChange=(e)=>{
     const status = e.target.checked ? 'completed':'active';
     onUpdate({...todo,status:status});
@@ -16,12 +16,12 @@ export default function Todo({todo,onUpdate,onDelete}) {
       <input 
       className={styles.checkbox}
       type='checkbox' 
-      id='checkbox' 
+      id={id}
       // todo.status 있어야하나 위에 const에 받았으므로 todo생략
       checked={status === 'completed'}
       onChange={handleChange}
       /> 
-      <label htmlFor='checkbox' className={styles.text}>{text}</label>
+      <label htmlFor={id} className={styles.text}>{text}</label>
       <span className={styles.icon}>
       <button onClick={handleDelete} className={styles.button}>
         <BsTrashFill/>
